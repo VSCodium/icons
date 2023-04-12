@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="100" height="100" viewBox="0, 0, 100, 100">
+  <defs>
+    <linearGradient id="Gradient_1" gradientUnits="userSpaceOnUse" x1="-268.386" y1="-171.205" x2="-317.629" y2="-193.436" gradientTransform="matrix(1, 0, 0, 1, 337.445, 201)">
+      <stop offset="0" stop-color="@@MEDIAN1@@"/>
+      <stop offset="1" stop-color="@@FLOOR@@"/>
+    </linearGradient>
+    <linearGradient id="Gradient_2" gradientUnits="userSpaceOnUse" x1="-268.386" y1="-611.743" x2="-317.629" y2="-589.512" gradientTransform="matrix(1, 0, 0, 1, 337.445, 681.911)">
+      <stop offset="0" stop-color="@@MEDIAN1@@"/>
+      <stop offset="1" stop-color="@@FLOOR@@"/>
+    </linearGradient>
+  </defs>
+  <g id="Layer_1">
+    <path d="M16.803,16.352 L30.302,1.286 L33.361,0.173 L35.042,0.86 L35.476,1.002 L88.952,28.155 C91.788,29.594 92.259,32.449 89.97,34.314 L83.026,39.967 C81.154,41.491 78.014,41.853 75.555,40.829 L16.803,16.352 z" fill="url(#Gradient_1)" id="Fill-1"/>
+    <path d="M16.803,83.611 L30.302,98.677 L33.361,99.79 L35.042,99.103 L35.476,98.961 L88.952,71.808 C91.788,70.368 92.259,67.513 89.97,65.649 L83.026,59.996 C81.154,58.472 78.014,58.11 75.555,59.134 L16.803,83.611 z" fill="url(#Gradient_2)" id="Fill-4"/>
+    <path d="M8.577,16.151 C8.577,13.734 9.801,11.531 11.727,10.483 L30.056,0.515 C32.084,-0.589 34.086,0.262 36.144,1.375 C36.24,1.424 36.336,1.476 36.431,1.532 C36.336,1.479 36.24,1.427 36.144,1.375 C33.602,0.084 30.819,1.174 30.819,4.337 L30.819,95.663 C30.819,98.826 33.602,99.916 36.144,98.625 C36.24,98.573 36.336,98.521 36.431,98.468 C36.336,98.524 36.24,98.576 36.144,98.625 C34.086,99.738 32.084,100.589 30.056,99.485 L11.727,89.517 C9.801,88.469 8.577,86.266 8.577,83.849 L8.577,16.151 z" fill="@@MEDIAN1@@" id="Fill-7"/>
+  </g>
+</svg>
