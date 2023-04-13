@@ -11,6 +11,13 @@ set -e
 check_programs "icns2png" "composite" "convert" "png2icns" "icotool" "rsvg-convert" "bc" "pastel"
 
 build_icon() { # {{{
+  echo "- ${ICON_NAME}/${BG_NAME}/${COLOR_NAME}: ${BG_COLOR_SET}"
+
+  # echo "COLOR_PRIMARY: ${COLOR_PRIMARY}"
+  # echo "COLOR_MEDIAN1: ${COLOR_MEDIAN1}"
+  # echo "COLOR_MEDIAN2: ${COLOR_MEDIAN2}"
+  # echo "COLOR_FLOOR: ${COLOR_FLOOR}"
+
   convert -size 2048x2048 canvas:transparent PNG32:"icon.png"
 
   if [ ! -z "${BG_FILENAME}" ]; then
@@ -34,10 +41,10 @@ build_icon() { # {{{
 
   rsvg-convert -w "${BG_ICON_SIZE}" -h "${BG_ICON_SIZE}" "icon_head.svg" -o "icon_head.png"
 
-  # echo "${BG_ICON_TOP};${BG_SHIFT_ICON};${ICON_SHIFT_LEFT}"
+  # echo "${BG_ICON_TOP};${BG_ICON_SHIFT};${ICON_SHIFT_LEFT}"
 
   if [ ! -z "${BG_ICON_TOP}" ]; then
-    if [ "${BG_SHIFT_ICON}" == "on" ] && [ ! -z "${ICON_SHIFT_LEFT}" ]; then
+    if [ "${BG_ICON_SHIFT}" == "on" ] && [ ! -z "${ICON_SHIFT_LEFT}" ]; then
       LEFT="$( bc <<< "${ICON_SHIFT_LEFT} + ${BG_ICON_LEFT}" )"
 
       # echo "${LEFT}"
@@ -49,30 +56,63 @@ build_icon() { # {{{
   else
     composite "icon_head.png" -gravity center -background none -colorspace sRGB "icon.png" "icon.png"
   fi
+
+  BUILT="yes"
 } # }}}
 
 build_darwin() { # {{{
-  mkdir -p "./icons/darwin/${BG_NAME}/${COLOR_NAME}/"
+  if [ ! -f "./icons/darwin/${BG_NAME}/${COLOR_NAME}/${ICON_NAME}.icns" ]; then
+    if [ "${BUILT}" == "no" ]; then
+      build_icon
+    fi
 
-  composite \( "icon.png" -resize 884x884 \) -gravity center -background none \( -size 1024x1024 canvas:transparent \) "icon_1024.png"
+    mkdir -p "./icons/darwin/${BG_NAME}/${COLOR_NAME}/"
 
-  convert "icon_1024.png" -resize 512x512 icon_512.png
-  convert "icon_1024.png" -resize 256x256 icon_256.png
-  convert "icon_1024.png" -resize 128x128 icon_128.png
+    composite \( "icon.png" -resize 884x884 \) -gravity center -background none \( -size 1024x1024 canvas:transparent \) "icon_1024.png"
 
-  png2icns "./icons/darwin/${BG_NAME}/${COLOR_NAME}/${ICON_NAME}.icns" icon_512.png icon_256.png icon_128.png > /dev/null
+    convert "icon_1024.png" -resize 512x512 icon_512.png
+    convert "icon_1024.png" -resize 256x256 icon_256.png
+    convert "icon_1024.png" -resize 128x128 icon_128.png
+
+    png2icns "./icons/darwin/${BG_NAME}/${COLOR_NAME}/${ICON_NAME}.icns" icon_512.png icon_256.png icon_128.png > /dev/null
+  fi
 } # }}}
 
 build_linux() { # {{{
-  mkdir -p "./icons/linux/${BG_NAME}/${COLOR_NAME}/"
+  if [ ! -f "./icons/linux/${BG_NAME}/${COLOR_NAME}/${ICON_NAME}.png" ]; then
+    if [ "${BUILT}" == "no" ]; then
+      build_icon
+    fi
 
-  composite \( "icon.png" -resize 846x846 \) -gravity center -background none \( -size 1024x1024 canvas:transparent \) "./icons/linux/${BG_NAME}/${COLOR_NAME}/${ICON_NAME}.png"
+    mkdir -p "./icons/linux/${BG_NAME}/${COLOR_NAME}/"
+
+    if [ -z "${BG_LINUX_SIZE}" ]; then
+      BG_LINUX_SIZE="952"
+    fi
+
+    if [ -z "${BG_LINUX_TOP}" ]; then
+      composite \( "icon.png" -resize "${BG_LINUX_SIZE}x${BG_LINUX_SIZE}" \) -gravity center -background none \( -size 1024x1024 canvas:transparent \) "./icons/linux/${BG_NAME}/${COLOR_NAME}/${ICON_NAME}.png"
+    else
+      LEFT="$( bc <<< "(1024 - ${BG_LINUX_SIZE}) / 2" )"
+      TOP="$( bc <<< "${LEFT} + ${BG_LINUX_TOP}" )"
+
+      # echo "+${LEFT}+${TOP}"
+
+      composite \( "icon.png" -resize "${BG_LINUX_SIZE}x${BG_LINUX_SIZE}" \) -geometry "+${LEFT}+${TOP}" -background none \( -size 1024x1024 canvas:transparent \) "./icons/linux/${BG_NAME}/${COLOR_NAME}/${ICON_NAME}.png"
+    fi
+  fi
 } # }}}
 
 build_win32() { # {{{
-  mkdir -p "./icons/win32/${BG_NAME}/${COLOR_NAME}/"
+  if [ ! -f "./icons/win32/${BG_NAME}/${COLOR_NAME}/${ICON_NAME}.ico" ]; then
+    if [ "${BUILT}" == "no" ]; then
+      build_icon
+    fi
 
-  convert "icon.png" -define icon:auto-resize=256,128,96,64,48,32,24,20,16 "./icons/win32/${BG_NAME}/${COLOR_NAME}/${ICON_NAME}.ico"
+    mkdir -p "./icons/win32/${BG_NAME}/${COLOR_NAME}/"
+
+    convert "icon.png" -define icon:auto-resize=256,128,96,64,48,32,24,20,16 "./icons/win32/${BG_NAME}/${COLOR_NAME}/${ICON_NAME}.ico"
+  fi
 } # }}}
 
 for ICON_PATH in "./templates/icons/"*
@@ -96,8 +136,6 @@ do
           COLOR_NAME="${COLOR_PATH/*\//}"
           COLOR_NAME="${COLOR_NAME%.*}"
 
-          echo "- ${ICON_NAME}/${BG_NAME}/${COLOR_NAME}: ${BG_COLOR_SET}"
-
           if [ "${BG_COLOR_SET}" == "light" ]; then
             source "${COLOR_PATH}/normal.conf"
 
@@ -109,12 +147,8 @@ do
             source "${COLOR_PATH}/${BG_COLOR_SET}.conf"
           fi
 
-          # echo "COLOR_PRIMARY: ${COLOR_PRIMARY}"
-          # echo "COLOR_MEDIAN1: ${COLOR_MEDIAN1}"
-          # echo "COLOR_MEDIAN2: ${COLOR_MEDIAN2}"
-          # echo "COLOR_FLOOR: ${COLOR_FLOOR}"
+          BUILT="no"
 
-          build_icon
           build_darwin
           build_linux
           build_win32
