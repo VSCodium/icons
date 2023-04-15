@@ -4,6 +4,7 @@ Contributing
 Dependencies
 ------------
 
+- bash
 - icns2png
 - imagemagick
 - png2icns
@@ -12,9 +13,58 @@ Dependencies
 - bc
 - pastel
 
-
-Color Template
+Icon Templates
 --------------
+
+The templates for the icon can be found at [`./templates/icons/`](./templates/icons/).
+
+The template is composed of:
+- `main.conf`: the configuration variables
+- `main.svg`: the icon in SVG format
+
+### `main.conf`
+
+The variables are:
+
+- `ICON_SHIFT_LEFT`: value used to shift the icon to the left; if empty, no shift occurs
+
+### `main.svg`
+
+The SVG must use the following variables as its colors:
+
+- `@@PRIMARY@@`
+- `@@MEDIAN1@@`
+- `@@MEDIAN2@@`
+- `@@FLOOR@@`
+
+Background Templates
+--------------------
+
+The templates for the background can be found at [`./templates/backgrounds/`](./templates/backgrounds/).
+
+The template is composed of:
+- `main.conf`: the configuration variables
+- `main.(png|svg)`: the background
+
+### `main.conf`
+
+All sizes and positions are in `px` with a target size of `2048x2048`.
+
+- `BG_FILENAME`: the file to use as background
+- `BG_COLOR_SET`: `normal` or `light` (`light` = `lighten 0.05`)
+- `BG_ICON_SIZE`: the size of the icon
+- `BG_ICON_TOP`: the top position of the icon; if empty, the icon is centered
+- `BG_ICON_LEFT`: the left position of the icon; if empty, the icon is centered
+- `BG_ICON_SHIFT`: `on` or `off`; if `on`,  the icon is shifted by the values defined in the icon template
+- `BG_LINUX_SIZE`: the size of the background for Linux
+- `BG_LINUX_TOP`: the top position of the background for Linux; if empty, the icon is centered
+
+Color Templates
+---------------
+
+The templates for the color scheme can be found at [`./templates/colors/`](./templates/colors/).
+
+The template is composed of only 1 file:
 
 ### `normal.conf`
 
