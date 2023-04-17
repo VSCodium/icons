@@ -13,10 +13,10 @@ Dependencies
 - bc
 - pastel
 
-Icon Templates
+Shapes Templates
 --------------
 
-The templates for the icon can be found at [`./templates/icons/`](./templates/icons/).
+The templates for the shape can be found at [`./templates/shapes/`](./templates/shapes/).
 
 The template is composed of:
 - `main.conf`: the configuration variables
@@ -26,7 +26,7 @@ The template is composed of:
 
 The variables are:
 
-- `ICON_SHIFT_LEFT`: value used to shift the icon to the left; if empty, no shift occurs
+- `SHAPE_SHIFT_LEFT`: value used to shift the icon to the left; if empty, no shift occurs
 
 ### `main.svg`
 
@@ -52,12 +52,12 @@ All sizes and positions are in `px` with a target size of `2048x2048`.
 
 - `BG_FILENAME`: the file to use as background
 - `BG_COLOR_SET`: `normal` or `light` (`light` = `lighten 0.05`)
-- `BG_ICON_SIZE`: the size of the icon
-- `BG_ICON_TOP`: the top position of the icon; if empty, the icon is centered
-- `BG_ICON_LEFT`: the left position of the icon; if empty, the icon is centered
-- `BG_ICON_SHIFT`: `on` or `off`; if `on`,  the icon is shifted by the values defined in the icon template
+- `BG_SHAPE_SIZE`: the size of the shape
+- `BG_SHAPE_TOP`: the top position of the shape; if empty, the shape is centered
+- `BG_SHAPE_LEFT`: the left position of the shape; if empty, the shape is centered
+- `BG_SHAPE_SHIFT`: `on` or `off`; if `on`,  the shape is shifted by the values defined in the icon template
 - `BG_LINUX_SIZE`: the size of the background for Linux
-- `BG_LINUX_TOP`: the top position of the background for Linux; if empty, the icon is centered
+- `BG_LINUX_TOP`: the top position of the background for Linux; if empty, the shape is centered
 
 Color Templates
 ---------------
