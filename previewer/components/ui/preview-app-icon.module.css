@@ -1,0 +1,44 @@
+.bgWhite {
+	background-color: rgb(252,252,252);
+}
+.bgGrey {
+	background-color: #D1D2D3;
+}
+.bgBlue {
+	background-color: #4778C6;
+}
+.bgGreen {
+	background-color: #4A4C50;
+}
+.bgBlack {
+	background-color: #2E2E2E;
+}
+.overlayWhite {
+	background-color: rgb(163,212,250);
+	opacity: 0.65;
+}
+.overlayGrey {
+	background-color: #9ED2ED;
+	opacity: 0.65;
+}
+.overlayBlue {
+	background-color: rgb(163,212,250);
+	opacity: 0.65;
+}
+.overlayGreen {
+	background-color: #326784;
+	opacity: 0.65;
+}
+.overlayBlack {
+	background-color: rgb(30,87,116);
+	opacity: 0.65;
+}
+.withOverlayWhite {
+	background-color: #C7E0F9;
+}
+.withOverlayGrey {
+	background-color: #A8D1EC;
+}
+.withOverlayGreen {
+	background-color: #3F6683;
+}
