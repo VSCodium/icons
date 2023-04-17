@@ -87,9 +87,11 @@ export default function IndexPage() {
 									return (selectedBackgrounds.length == 0 ? backgrounds : selectedBackgrounds).map(({ value: background }) => {
 										return (
 											<PreviewAppIcon
-												id={`icon-${platform}-${background}-${color}-${shape}`}
-												src={`/icons/${platform}/${background}/${color}/${shape}.png`}
-												/>
+												platform={platform}
+												background={background}
+												color={color}
+												shape={shape}
+											/>
 										)
 									})
 								})
