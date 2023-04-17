@@ -33,40 +33,47 @@ export function PreviewAppIcon({ platform, background, color, shape }) {
 	return (
 		<div
 			key={`preview_${platform}_${background}_${color}_${shape}`}
-			className="grid grid-cols-3 gap-0"
+			className="flex flex-row items-center"
 		>
-			{
-				[false, true].map((overlay) => {
-					return (
-						<>
-							<Icons
-								platform={platform}
-								background={background}
-								color={color}
-								shape={shape}
-								bgColor={'White'}
-								overlay={overlay}
-							/>
-							<Icons
-								platform={platform}
-								background={background}
-								color={color}
-								shape={shape}
-								bgColor={'Grey'}
-								overlay={overlay}
-							/>
-							<Icons
-								platform={platform}
-								background={background}
-								color={color}
-								shape={shape}
-								bgColor={'Green'}
-								overlay={overlay}
-							/>
-						</>
-					)
-				})
-			}
+			<div className="pr-4">
+				Background: {background}<br />
+				Color: {color}<br />
+				Shape: {shape}
+			</div>
+			<div className="grid grid-cols-3 gap-0">
+				{
+					[false, true].map((overlay) => {
+						return (
+							<>
+								<Icons
+									platform={platform}
+									background={background}
+									color={color}
+									shape={shape}
+									bgColor={'White'}
+									overlay={overlay}
+								/>
+								<Icons
+									platform={platform}
+									background={background}
+									color={color}
+									shape={shape}
+									bgColor={'Grey'}
+									overlay={overlay}
+								/>
+								<Icons
+									platform={platform}
+									background={background}
+									color={color}
+									shape={shape}
+									bgColor={'Green'}
+									overlay={overlay}
+								/>
+							</>
+						)
+					})
+				}
+			</div>
 		</div>
 	)
 }
