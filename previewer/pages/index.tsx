@@ -11,9 +11,25 @@ import shapes from '@/config/shapes.json'
 import colors from '@/config/colors.json'
 import backgrounds from '@/config/backgrounds.json'
 
+function isLimited(limits: { backgrounds: string[] | undefined; colors: string[] | undefined } | undefined, background: string, color: string) { // {{{
+	if(!limits) {
+		return false
+	}
+
+	if(limits.backgrounds && !limits.backgrounds.includes(background)) {
+		return true
+	}
+
+	if(limits.colors && !limits.colors.includes(color)) {
+		return true
+	}
+
+	return false
+} // }}}
+
 export default function IndexPage() {
 	const [selectedPlaforms, setSelectedPlaforms] = useState([])
-	const [selectedShapes, setSelectedShapes] = useState(shapes.filter(({ value }) => value === 'paulo22s'))
+	const [selectedShapes, setSelectedShapes] = useState(shapes.filter(({ value }) => value === 'paulo22s' || value === 'paulo22sb'))
 	const [selectedColors, setSelectedColors] = useState(colors.filter(({ value }) => value === 'blue1'))
 	const [selectedBackgrounds, setSelectedBackgrounds] = useState(backgrounds.filter(({ value }) => value === 'nobg' || value === 'circle1'))
 
@@ -82,17 +98,22 @@ export default function IndexPage() {
 				<div className="flex flex-col items-center gap-16">
 					{
 						(selectedPlaforms.length == 0 ? platforms : selectedPlaforms).map(({ value: platform }) => {
-							return (selectedShapes.length == 0 ? shapes : selectedShapes).map(({ value: shape }) => {
+							return (selectedShapes.length == 0 ? shapes : selectedShapes).map(({ value: shape, limits }) => {
 								return (selectedColors.length == 0 ? colors : selectedColors).map(({ value: color }) => {
 									return (selectedBackgrounds.length == 0 ? backgrounds : selectedBackgrounds).map(({ value: background }) => {
-										return (
-											<PreviewAppIcon
-												platform={platform}
-												background={background}
-												color={color}
-												shape={shape}
-											/>
-										)
+										if(isLimited(limits, background, color)) {
+											return null
+										}
+										else {
+											return (
+												<PreviewAppIcon
+													platform={platform}
+													background={background}
+													color={color}
+													shape={shape}
+												/>
+											)
+										}
 									})
 								})
 							})

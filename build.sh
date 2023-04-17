@@ -11,7 +11,19 @@ set -e
 check_programs "icns2png" "composite" "convert" "png2icns" "icotool" "rsvg-convert" "bc" "pastel"
 
 build_icon() { # {{{
-  echo "- ${SHAPE_NAME}/${BG_NAME}/${COLOR_NAME}: ${BG_COLOR_SET}"
+  echo "- ${SHAPE_NAME}/${BG_NAME}/${COLOR_NAME}: ${COLOR_SET}"
+
+  if [ "${COLOR_SET}" == "light" ]; then
+      source "${COLOR_PATH}/normal.conf"
+
+      COLOR_PRIMARY_400=$( pastel lighten 0.05 "${COLOR_PRIMARY_400}" )
+      COLOR_PRIMARY_500=$( pastel lighten 0.05 "${COLOR_PRIMARY_500}" )
+      COLOR_PRIMARY_700=$( pastel lighten 0.05 "${COLOR_PRIMARY_700}" )
+      COLOR_PRIMARY_900=$( pastel lighten 0.05 "${COLOR_PRIMARY_900}" )
+      COLOR_SECONDARY_900=$( pastel lighten 0.05 "${COLOR_SECONDARY_900}" )
+    else
+      source "${COLOR_PATH}/${COLOR_SET}.conf"
+    fi
 
   # echo "COLOR_PRIMARY_400: ${COLOR_PRIMARY_400}"
   # echo "COLOR_PRIMARY_500: ${COLOR_PRIMARY_500}"
@@ -38,6 +50,7 @@ build_icon() { # {{{
   replace "s|@@PRIMARY_500@@|${COLOR_PRIMARY_500}|g" "icon_head.svg"
   replace "s|@@PRIMARY_700@@|${COLOR_PRIMARY_700}|g" "icon_head.svg"
   replace "s|@@PRIMARY_900@@|${COLOR_PRIMARY_900}|g" "icon_head.svg"
+  replace "s|@@SECONDARY_900@@|${COLOR_SECONDARY_900}|g" "icon_head.svg"
 
   rsvg-convert -w "${BG_SHAPE_SIZE}" -h "${BG_SHAPE_SIZE}" "icon_head.svg" -o "icon_head.png"
 
@@ -120,6 +133,11 @@ do
   SHAPE_NAME="${SHAPE_PATH/*\//}"
   SHAPE_NAME="${SHAPE_NAME%.*}"
 
+  SHAPE_SHIFT_LEFT=""
+  SHAPE_COLOR_SET=""
+  SHAPE_LIMIT_BG=""
+  SHAPE_LIMIT_COLOR=""
+
   source "${SHAPE_PATH}/main.conf"
 
   # if [ "${SHAPE_NAME}" == "cristiano20" ]; then
@@ -130,28 +148,49 @@ do
 
       source "${BG_PATH}/main.conf"
 
-      # if [ "${BG_NAME}" == "circle1" ]; then
+      if [ ! -z "${SHAPE_COLOR_SET}" ]; then
+        COLOR_SET="${SHAPE_COLOR_SET}"
+      else
+        COLOR_SET="${BG_COLOR_SET}"
+      fi
+
+      # if [ "${BG_NAME}" == "nobg" ]; then
         for COLOR_PATH in "./templates/colors/"*
         do
           COLOR_NAME="${COLOR_PATH/*\//}"
           COLOR_NAME="${COLOR_NAME%.*}"
 
-          if [ "${BG_COLOR_SET}" == "light" ]; then
-            source "${COLOR_PATH}/normal.conf"
+          if [ ! -z "${SHAPE_LIMIT_BG}" ] || [ ! -z "${SHAPE_LIMIT_COLOR}" ]; then
+            LIMITED="no"
 
-            COLOR_PRIMARY_400=$( pastel lighten 0.05 "${COLOR_PRIMARY_400}" )
-            COLOR_PRIMARY_500=$( pastel lighten 0.05 "${COLOR_PRIMARY_500}" )
-            COLOR_PRIMARY_700=$( pastel lighten 0.05 "${COLOR_PRIMARY_700}" )
-            COLOR_PRIMARY_900=$( pastel lighten 0.05 "${COLOR_PRIMARY_900}" )
+            for LIMIT_BG in "${SHAPE_LIMIT_BG[@]}";
+            do
+              if [ "${BG_NAME}" != "${LIMIT_BG}" ]; then
+                LIMITED="yes"
+              fi
+            done
+
+            for LIMIT_COLOR in "${SHAPE_LIMIT_COLOR[@]}";
+            do
+              if [ "${COLOR_NAME}" != "${LIMIT_COLOR}" ]; then
+                LIMITED="yes"
+              fi
+            done
+
+            if [ "${LIMITED}" == "no" ]; then
+              BUILT="no"
+
+              build_darwin
+              build_linux
+              build_win32
+            fi
           else
-            source "${COLOR_PATH}/${BG_COLOR_SET}.conf"
+            BUILT="no"
+
+            build_darwin
+            build_linux
+            build_win32
           fi
-
-          BUILT="no"
-
-          build_darwin
-          build_linux
-          build_win32
         done
       # fi
     done

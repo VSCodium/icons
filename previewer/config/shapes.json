@@ -20,6 +20,14 @@
     "label": "paulo22s"
   },
   {
+    "value": "paulo22sb",
+    "label": "paulo22sb",
+	"limits": {
+		"backgrounds": ["nobg"],
+		"colors": ["blue1"]
+	}
+  },
+  {
     "value": "zolt20",
     "label": "zolt20"
   }
