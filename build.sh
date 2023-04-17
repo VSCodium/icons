@@ -13,10 +13,10 @@ check_programs "icns2png" "composite" "convert" "png2icns" "icotool" "rsvg-conve
 build_icon() { # {{{
   echo "- ${SHAPE_NAME}/${BG_NAME}/${COLOR_NAME}: ${BG_COLOR_SET}"
 
-  # echo "COLOR_PRIMARY: ${COLOR_PRIMARY}"
-  # echo "COLOR_MEDIAN1: ${COLOR_MEDIAN1}"
-  # echo "COLOR_MEDIAN2: ${COLOR_MEDIAN2}"
-  # echo "COLOR_FLOOR: ${COLOR_FLOOR}"
+  # echo "COLOR_PRIMARY_400: ${COLOR_PRIMARY_400}"
+  # echo "COLOR_PRIMARY_500: ${COLOR_PRIMARY_500}"
+  # echo "COLOR_PRIMARY_700: ${COLOR_PRIMARY_700}"
+  # echo "COLOR_PRIMARY_900: ${COLOR_PRIMARY_900}"
 
   convert -size 2048x2048 canvas:transparent PNG32:"icon.png"
 
@@ -34,10 +34,10 @@ build_icon() { # {{{
 
   cp "${SHAPE_PATH}/main.svg" "icon_head.svg"
 
-  replace "s|@@PRIMARY@@|${COLOR_PRIMARY}|g" "icon_head.svg"
-  replace "s|@@MEDIAN1@@|${COLOR_MEDIAN1}|g" "icon_head.svg"
-  replace "s|@@MEDIAN2@@|${COLOR_MEDIAN2}|g" "icon_head.svg"
-  replace "s|@@FLOOR@@|${COLOR_FLOOR}|g" "icon_head.svg"
+  replace "s|@@PRIMARY_400@@|${COLOR_PRIMARY_400}|g" "icon_head.svg"
+  replace "s|@@PRIMARY_500@@|${COLOR_PRIMARY_500}|g" "icon_head.svg"
+  replace "s|@@PRIMARY_700@@|${COLOR_PRIMARY_700}|g" "icon_head.svg"
+  replace "s|@@PRIMARY_900@@|${COLOR_PRIMARY_900}|g" "icon_head.svg"
 
   rsvg-convert -w "${BG_SHAPE_SIZE}" -h "${BG_SHAPE_SIZE}" "icon_head.svg" -o "icon_head.png"
 
@@ -139,10 +139,10 @@ do
           if [ "${BG_COLOR_SET}" == "light" ]; then
             source "${COLOR_PATH}/normal.conf"
 
-            COLOR_PRIMARY=$( pastel lighten 0.05 "${COLOR_PRIMARY}" )
-            COLOR_MEDIAN1=$( pastel lighten 0.05 "${COLOR_MEDIAN1}" )
-            COLOR_MEDIAN2=$( pastel lighten 0.05 "${COLOR_MEDIAN2}" )
-            COLOR_FLOOR=$( pastel lighten 0.05 "${COLOR_FLOOR}" )
+            COLOR_PRIMARY_400=$( pastel lighten 0.05 "${COLOR_PRIMARY_400}" )
+            COLOR_PRIMARY_500=$( pastel lighten 0.05 "${COLOR_PRIMARY_500}" )
+            COLOR_PRIMARY_700=$( pastel lighten 0.05 "${COLOR_PRIMARY_700}" )
+            COLOR_PRIMARY_900=$( pastel lighten 0.05 "${COLOR_PRIMARY_900}" )
           else
             source "${COLOR_PATH}/${BG_COLOR_SET}.conf"
           fi

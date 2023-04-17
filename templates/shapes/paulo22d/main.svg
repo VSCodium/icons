@@ -3,16 +3,16 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="100" height="100" viewBox="0, 0, 100, 100">
   <defs>
     <radialGradient id="Gradient_1" gradientUnits="userSpaceOnUse" cx="-135.802" cy="24.094" r="36.316" gradientTransform="matrix(-0, -0.363, 1, -0, -0, 0.682)">
-      <stop offset="0" stop-color="@@MEDIAN1@@"/>
-      <stop offset="1" stop-color="@@FLOOR@@"/>
+      <stop offset="0" stop-color="@@PRIMARY_500@@"/>
+      <stop offset="1" stop-color="@@PRIMARY_900@@"/>
     </radialGradient>
     <linearGradient id="Gradient_2" gradientUnits="userSpaceOnUse" x1="5.936" y1="21.079" x2="91.128" y2="96.623">
-      <stop offset="0" stop-color="@@PRIMARY@@"/>
-      <stop offset="1" stop-color="@@FLOOR@@"/>
+      <stop offset="0" stop-color="@@PRIMARY_400@@"/>
+      <stop offset="1" stop-color="@@PRIMARY_900@@"/>
     </linearGradient>
     <linearGradient id="Gradient_3" gradientUnits="userSpaceOnUse" x1="5.936" y1="0" x2="68.361" y2="23.518">
-      <stop offset="0" stop-color="@@PRIMARY@@"/>
-      <stop offset="1" stop-color="@@FLOOR@@"/>
+      <stop offset="0" stop-color="@@PRIMARY_400@@"/>
+      <stop offset="1" stop-color="@@PRIMARY_900@@"/>
     </linearGradient>
   </defs>
   <g id="Layer_1">

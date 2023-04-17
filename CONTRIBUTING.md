@@ -32,10 +32,10 @@ The variables are:
 
 The SVG must use the following variables as its colors:
 
-- `@@PRIMARY@@`
-- `@@MEDIAN1@@`
-- `@@MEDIAN2@@`
-- `@@FLOOR@@`
+- `@@PRIMARY_400@@`
+- `@@PRIMARY_500@@`
+- `@@PRIMARY_700@@`
+- `@@PRIMARY_900@@`
 
 Background Templates
 --------------------
@@ -69,10 +69,10 @@ The template is composed of only 1 file:
 ### `normal.conf`
 
 ```bash
-COLOR_PRIMARY="#62A0EA"
-COLOR_MEDIAN1="#3584E4"
-COLOR_MEDIAN2="#1C71D8"
-COLOR_FLOOR="#1A5FB4"
+COLOR_PRIMARY_400="#62A0EA"
+COLOR_PRIMARY_500="#3584E4"
+COLOR_PRIMARY_700="#1C71D8"
+COLOR_PRIMARY_900="#1A5FB4"
 ```
 
-Currently, the color `COLOR_MEDIAN1` is the color `COLOR_PRIMARY` but darkened 2 times (`pastel darken 0.1 $COLOR_PRIMARY`)
+Currently, the color `COLOR_PRIMARY_500` is the color `COLOR_PRIMARY_400` but darkened 2 times (`pastel darken 0.1 $COLOR_PRIMARY_400`)
