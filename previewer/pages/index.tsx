@@ -11,7 +11,7 @@ import shapes from '@/config/shapes.json'
 import colors from '@/config/colors.json'
 import backgrounds from '@/config/backgrounds.json'
 
-function isLimited(limits: { backgrounds: string[] | undefined; colors: string[] | undefined } | undefined, background: string, color: string) { // {{{
+function isLimited(limits: { backgrounds?: string[]; colors?: string[] } | undefined, background: string, color: string) { // {{{
 	if(!limits) {
 		return false
 	}

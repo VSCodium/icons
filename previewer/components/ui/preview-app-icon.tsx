@@ -13,16 +13,22 @@ function Icons({ platform, background, color, shape, bgColor, overlay }: { platf
 			<div className="flex flex-row items-end gap-8 p-8 relative">
 				<img
 					src={src}
+					alt="32px"
 					width="32"
-					/>
+					height="32"
+				/>
 				<img
 					src={src}
+					alt="64px"
 					width="64"
-					/>
+					height="64"
+				/>
 				<img
 					src={src}
+					alt="128px"
 					width="128"
-					/>
+					height="128"
+				/>
 				{/* { overlay && <div className={`${styles[`overlay${color}`]} absolute left-0 top-0 w-full h-full`}></div> } */}
 			</div>
 		</div>
