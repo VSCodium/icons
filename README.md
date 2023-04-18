@@ -1,27 +1,28 @@
 VSCodium Icons
 ==============
 
-Icons
------
+Shapes
+------
 
-|     name      |       author       |                    preview                    |   license    |                                 origin                                 |
-| :-----------: | :----------------: | :-------------------------------------------: | :----------: | :--------------------------------------------------------------------: |
-| `cristiano20` | @cristianovitorino | ![](./icons/linux/nobg/blue1/cristiano20.png) |              |             https://github.com/VSCodium/vscodium/pull/413              |
-|  `daiyam22`   |      @daiyam       |  ![](./icons/linux/nobg/blue1/daiyam22.png)   | CC-by-sa 4.0 |         https://github.com/VSCodium/vscodium/discussions/1218          |
-|   `jared18`   |    @jaredreich     |   ![](./icons/linux/nobg/blue1/jared18.png)   |              |  https://github.com/VSCodium/vscodium/issues/4#issuecomment-427070331  |
-|  `paulo22d`   |     @psergiojr     |  ![](./icons/linux/nobg/blue1/paulo22d.png)   | CC-by-sa 4.0 |            https://github.com/psergiojr/vscodium-logo-ideas            |
-|  `paulo22s`   |     @psergiojr     |  ![](./icons/linux/nobg/blue1/paulo22s.png)   | CC-by-sa 4.0 |            https://github.com/psergiojr/vscodium-logo-ideas            |
-|   `zolt20`    |     @setanarut     |   ![](./icons/linux/nobg/blue1/zolt20.png)    |              | https://github.com/VSCodium/vscodium/issues/491#issuecomment-729040072 |
+|     name      |       author       |                              preview                              |   license    |                                 origin                                 |
+| :-----------: | :----------------: | :---------------------------------------------------------------: | :----------: | :--------------------------------------------------------------------: |
+| `cristiano20` | @cristianovitorino | <img src="./icons/linux/nobg/blue1/cristiano20.png" width="128"/> |              |             https://github.com/VSCodium/vscodium/pull/413              |
+|  `daiyam22`   |      @daiyam       |  <img src="./icons/linux/nobg/blue1/daiyam22.png" width="128"/>   | CC-by-sa 4.0 |         https://github.com/VSCodium/vscodium/discussions/1218          |
+|   `jared18`   |    @jaredreich     |   <img src="./icons/linux/nobg/blue1/jared18.png" width="128"/>   |              |  https://github.com/VSCodium/vscodium/issues/4#issuecomment-427070331  |
+|  `paulo22d`   |     @psergiojr     |  <img src="./icons/linux/nobg/blue1/paulo22d.png" width="128"/>   | CC-by-sa 4.0 |            https://github.com/psergiojr/vscodium-logo-ideas            |
+|  `paulo22s`   |     @psergiojr     |  <img src="./icons/linux/nobg/blue1/paulo22s.png" width="128"/>   | CC-by-sa 4.0 |            https://github.com/psergiojr/vscodium-logo-ideas            |
+|  `paulo22sb`  |     @psergiojr     |  <img src="./icons/linux/nobg/blue1/paulo22sb.png" width="128"/>  | CC-by-sa 4.0 |                                                                        |
+|   `zolt20`    |     @setanarut     |   <img src="./icons/linux/nobg/blue1/zolt20.png" width="128"/>    |              | https://github.com/VSCodium/vscodium/issues/491#issuecomment-729040072 |
 
 Backgrounds
 -----------
 
-|  name   |                            preview                             |
-| :-----: | :------------------------------------------------------------: |
+|   name    |                              preview                              |
+| :-------: | :---------------------------------------------------------------: |
 | `circle1` | <img src="./icons/linux/circle1/blue1/paulo22s.png" width="128"/> |
-| `macos1` | <img src="./icons/linux/macos1/blue1/paulo22s.png" width="128"/> |
-| `nobg` | <img src="./icons/linux/nobg/blue1/paulo22s.png" width="128"/> |
-| `rect1` | <img src="./icons/linux/rect1/blue1/paulo22s.png" width="128"/> |
+| `macos1`  | <img src="./icons/linux/macos1/blue1/paulo22s.png" width="128"/>  |
+|  `nobg`   |  <img src="./icons/linux/nobg/blue1/paulo22s.png" width="128"/>   |
+|  `rect1`  |  <img src="./icons/linux/rect1/blue1/paulo22s.png" width="128"/>  |
 
 Colors
 ------
@@ -44,6 +45,11 @@ You can build the app with any icon you want or change directly the icon in the 
 - Windows: https://www.howtogeek.com/75983/stupid-geek-tricks-how-to-modify-the-icon-of-an-.exe-file/
 - macOS: https://appleinsider.com/articles/21/01/06/how-to-change-app-icons-on-macos
 - Linux: https://www.maketecheasier.com/change-application-icon-from-terminal-linux/
+
+Preview
+-------
+
+You can preview them at https://vscodium-icons.netlify.app/
 
 License
 -------
