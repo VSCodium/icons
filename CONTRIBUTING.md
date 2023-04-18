@@ -73,6 +73,10 @@ COLOR_PRIMARY_400="#62A0EA"
 COLOR_PRIMARY_500="#3584E4"
 COLOR_PRIMARY_700="#1C71D8"
 COLOR_PRIMARY_900="#1A5FB4"
+COLOR_PRIMARY_950="#1A3C64"
 ```
 
-Currently, the color `COLOR_PRIMARY_500` is the color `COLOR_PRIMARY_400` but darkened 2 times (`pastel darken 0.1 $COLOR_PRIMARY_400`)
+### variances
+
+- `COLOR_PRIMARY_500`: `pastel darken 0.1 $COLOR_PRIMARY_400`
+- `COLOR_PRIMARY_950`: `hsl(COLOR_PRIMARY_900) => hsl(h, s - 17.3, l - 15.5)`

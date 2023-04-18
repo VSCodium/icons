@@ -23,8 +23,7 @@
     "value": "paulo22sb",
     "label": "paulo22sb",
 	"limits": {
-		"backgrounds": ["nobg"],
-		"colors": ["blue1"]
+		"backgrounds": ["nobg"]
 	}
   },
   {

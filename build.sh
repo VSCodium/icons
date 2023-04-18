@@ -20,7 +20,7 @@ build_icon() { # {{{
       COLOR_PRIMARY_500=$( pastel lighten 0.05 "${COLOR_PRIMARY_500}" )
       COLOR_PRIMARY_700=$( pastel lighten 0.05 "${COLOR_PRIMARY_700}" )
       COLOR_PRIMARY_900=$( pastel lighten 0.05 "${COLOR_PRIMARY_900}" )
-      COLOR_SECONDARY_900=$( pastel lighten 0.05 "${COLOR_SECONDARY_900}" )
+      COLOR_PRIMARY_950=$( pastel lighten 0.05 "${COLOR_PRIMARY_950}" )
     else
       source "${COLOR_PATH}/${COLOR_SET}.conf"
     fi
@@ -29,6 +29,7 @@ build_icon() { # {{{
   # echo "COLOR_PRIMARY_500: ${COLOR_PRIMARY_500}"
   # echo "COLOR_PRIMARY_700: ${COLOR_PRIMARY_700}"
   # echo "COLOR_PRIMARY_900: ${COLOR_PRIMARY_900}"
+  # echo "COLOR_PRIMARY_950: ${COLOR_PRIMARY_950}"
 
   convert -size 2048x2048 canvas:transparent PNG32:"icon.png"
 
@@ -50,7 +51,7 @@ build_icon() { # {{{
   replace "s|@@PRIMARY_500@@|${COLOR_PRIMARY_500}|g" "icon_head.svg"
   replace "s|@@PRIMARY_700@@|${COLOR_PRIMARY_700}|g" "icon_head.svg"
   replace "s|@@PRIMARY_900@@|${COLOR_PRIMARY_900}|g" "icon_head.svg"
-  replace "s|@@SECONDARY_900@@|${COLOR_SECONDARY_900}|g" "icon_head.svg"
+  replace "s|@@PRIMARY_950@@|${COLOR_PRIMARY_950}|g" "icon_head.svg"
 
   rsvg-convert -w "${BG_SHAPE_SIZE}" -h "${BG_SHAPE_SIZE}" "icon_head.svg" -o "icon_head.png"
 
@@ -163,19 +164,23 @@ do
           if [ ! -z "${SHAPE_LIMIT_BG}" ] || [ ! -z "${SHAPE_LIMIT_COLOR}" ]; then
             LIMITED="no"
 
-            for LIMIT_BG in "${SHAPE_LIMIT_BG[@]}";
-            do
-              if [ "${BG_NAME}" != "${LIMIT_BG}" ]; then
-                LIMITED="yes"
-              fi
-            done
+            if [ ! -z "${SHAPE_LIMIT_BG}" ]; then
+              for LIMIT_BG in "${SHAPE_LIMIT_BG[@]}";
+              do
+                if [ "${BG_NAME}" != "${LIMIT_BG}" ]; then
+                  LIMITED="yes"
+                fi
+              done
+            fi
 
-            for LIMIT_COLOR in "${SHAPE_LIMIT_COLOR[@]}";
-            do
-              if [ "${COLOR_NAME}" != "${LIMIT_COLOR}" ]; then
-                LIMITED="yes"
-              fi
-            done
+            if [ ! -z "${SHAPE_LIMIT_COLOR}" ]; then
+              for LIMIT_COLOR in "${SHAPE_LIMIT_COLOR[@]}";
+              do
+                if [ "${COLOR_NAME}" != "${LIMIT_COLOR}" ]; then
+                  LIMITED="yes"
+                fi
+              done
+            fi
 
             if [ "${LIMITED}" == "no" ]; then
               BUILT="no"
